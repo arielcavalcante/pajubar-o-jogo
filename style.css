@@ -68,19 +68,36 @@ a:active {
 
 .botao {
 	font-family: 'Newsgeek';
-	background-color: #333;
-	color: white;
 	font-size: 1.5rem;
-	font-weight: bolder;
+	color: white;
+	background-color: #333;
 	border: none;
 	border-radius: 0.375rem;
-	padding-top: 0.5rem;
 	box-shadow: inset 0.1rem 0.1rem white, 0.1rem 0.1rem black;
+}
+.paginacao.botao {
+	height: 1.5rem;
+	width: 2rem;
+	position: relative;
+}
+
+.avancar {
+	margin: 0;
+	margin-left: auto;
+}
+
+.botao > span {
+	position: absolute;
+	top: 60%;
+	left: 57%;
+	transform: translate(-50%, -50%);
 }
 
 .botao.enviar {
-	width: 100%;
 	font-size: 1rem;
+	width: 100%;
+	display: none;
+	padding-top: 0.5rem;
 }
 
 .rotulo {
@@ -90,10 +107,10 @@ a:active {
 	cursor: pointer;
 }
 
-input {
+/* input {
 	width: 0;
 	height: 0;
-}
+} */
 
 input[type='radio']:not(:checked) + label {
 	margin-left: 2.75rem;
@@ -123,7 +140,7 @@ input[type='radio']:not(:checked) + label {
 	}
 	.texto.container,
 	.respostas.container {
-		margin: 3rem;
+		margin: 1rem 4rem;
 	}
 	.conteudo.principal,
 	header.container {
