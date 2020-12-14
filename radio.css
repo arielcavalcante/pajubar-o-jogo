@@ -1,0 +1,25 @@
+.icone,
+input[type='radio']:checked + label::before {
+	animation: blinker 800ms linear infinite;
+}
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}
+
+input[type='radio'] {
+	opacity: 0;
+}
+
+input[type='radio']:focus + label {
+	background-color: lightgrey;
+}
+
+input[type='radio']:checked + label::before {
+	content: '▶';
+	margin-left: 0;
+	margin-right: 1rem;
+}
+
