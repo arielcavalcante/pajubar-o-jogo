@@ -1,0 +1,28 @@
+.icone--pergunta{
+	animation: blinker 800ms linear infinite;
+}
+
+.envelope {
+	display: flex;
+	align-items: center;
+}
+
+input[type='radio'] {
+	opacity: 0;
+}
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}
+
+@keyframes waves {
+	25%,
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}

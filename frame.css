@@ -1,26 +1,24 @@
-.quiz.wrapper,
-.placar.wrapper {
-	width: 100%;
+.frame,
+.placar {
 	background-color: white;
 	border: solid 0.25rem #222;
 	padding: 0.25rem;
 	border-radius: 0.5rem;
 }
 
-.placar.wrapper {
+.frame {
+	box-shadow: inset -0.125rem -0.125rem white, inset -0.25rem -0.25rem #222,
+		inset 0.125rem 0.125rem white, inset 0.25rem 0.25rem #222;
+}
+
+.placar {
+	letter-spacing: 0.25rem;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	background: #222;
 	padding: 0.0625rem;
 	padding-right: 0.25rem;
 	margin-bottom: 2rem;
-}
-
-.placar {
-	width: 100%;
-	justify-content: flex-end;
-	display: inline-flex;
 	border: solid 0.125rem #222;
 	border-top: none;
 	border-left: none;
@@ -28,56 +26,12 @@
 	border-color: white;
 }
 
-.placar.texto,
-.placar.numero {
+.placar .texto,
+.placar .numero {
 	color: white;
-	padding: 0.125rem;
-	padding-top: 0.25rem;
 	width: fit-content;
+	padding: 0.25rem;
+	padding-top: 0.5rem;
+	margin: 0.125rem;
 	border: none;
-}
-
-.placar {
-	letter-spacing: 0.125rem;
-}
-
-.slide {
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: fit-content;
-	width: 100%;
-	z-index: 1;
-	opacity: 0;
-	transition: opacity 0.5s;
-}
-
-.slide-ativo {
-	opacity: 1;
-	z-index: 2;
-}
-
-.quiz.interno {
-	position: relative;
-}
-
-.quiz.interno {
-	height: 20rem;
-}
-
-@media (min-width: 541px) {
-	.placar {
-		height: fit-content;
-		width: 49.5%;
-	}
-	.placar.wrapper {
-		flex-direction: row;
-		padding: 0.0625rem;
-	}
-	.placar.texto,
-	.placar.numero {
-		padding: 1rem 0.5rem;
-		border-radius: 0.25rem;
-		margin: 0.125rem;
-	}
 }

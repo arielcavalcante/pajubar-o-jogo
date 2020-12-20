@@ -2,78 +2,68 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" conteudo="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Queez</title>
 		<!-- <link rel="manifest" href="manifest.json" /> -->
 		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="radio.css" />
+		<link rel="stylesheet" href="animation.css" />
 		<link rel="stylesheet" href="frame.css" />
 		<link rel="stylesheet" href="background.css" />
 	</head>
 	<body>
-		<div class="body">
-			<header class="container">
-				<h1 class="title">Queez</h1>
-			</header>
-			<main class="conteudo principal">
-				<div class="placar wrapper">
-					<div class="placar">
-						<span class="placar texto">pontos:</span>
-						<span class="placar numero">000</span>
-					</div>
-					<div class="placar">
-						<span class="placar numero taxa">0/10</span>
-					</div>
-				</div>
-				<div class="quiz wrapper">
-					<div class="botoes quiz">
-						<div class="quiz interno">
-							<div class="texto conteudo">
-								<span class="texto principal"
-									>Quantas travestis você conhece?</span
-								>
-								<span class="icone texto">▼</span>
-							</div>
-							<form class="invisivel"></form>
+		<header>
+			<h1>Queez</h1>
+		</header>
+		<main>
+			<div class="placar">
+				<span class="texto">pontos:</span>
+				<span class="numero">000</span>
+			</div>
+			<div class="frame">
+				<div class="quiz--wrapper">
+					<div class="quiz--inject">
+						<div class="pergunta">
+							<span>Quantas travestis você conhece?</span>
+							<span class="icone">▼</span>
 						</div>
-					</div>
-					<div class="paginacao wrapper">
-						<button class="paginacao voltar botao">
-							<span>←</span>
-						</button>
-						<button class="paginacao avancar botao">
-							<span>→</span>
-						</button>
-					</div>
-					<div class="enviar wrapper">
-						<div class="enviar">
-							<button type="submit" class="enviar botao">Aquenda!</button>
-						</div>
+						<form class="invisivel"></form>
 					</div>
 				</div>
-			</main>
-			<footer class="footer container">
-				<div class="footer conteudo">
-					<span class="com_amor">
-						Feito com <span class="love">❤️</span> por
-						<a
-							target="blank_"
-							title="Github do Ariel"
-							href="https://github.com/arielcavalcante"
-						>
-							Ariel
-						</a>
-						e
-						<a
-							target="blank_"
-							title="Github de Nelson"
-							href="https://github.com/NelsonFilho1984"
-							>Nelson</a
-						>.
-					</span>
+				<div class="paginacao">
+					<button tabindex="3" class="voltar">
+						<span>←</span>
+					</button>
+					<button tabindex="3" class="avancar">
+						<span>→</span>
+					</button>
 				</div>
-			</footer>
-		</div>
+				<div class="enviar">
+					<button tabindex="3" type="submit">
+						<span>Aquenda!</span>
+					</button>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<span class="com-amor">
+				Feito com <span>❤️</span> por
+				<a
+					tabindex="3"
+					target="blank_"
+					title="Github do Ariel"
+					href="https://github.com/arielcavalcante"
+					>Ariel</a
+				>
+				e
+				<a
+					tabindex="3"
+					target="blank_"
+					title="Github de Nelson"
+					href="https://github.com/NelsonFilho1984"
+					>Nelson</a
+				>.
+			</span>
+		</footer>
 		<script src="data.js"></script>
 		<script src="main.js"></script>
 	</body>
