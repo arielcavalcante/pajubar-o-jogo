@@ -4,31 +4,108 @@
 }
 
 :root {
-	font-size: 5vw;
+	font-size: 4.125vw;
 	font-family: 'Newsgeek', Arial Black, sans-serif;
 	letter-spacing: 0.0375rem;
 }
 
-* {
-	margin: 0;
-	box-sizing: border-box;
-}
-
 body {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-}
-
-.body {
-	width: 80%;
+	width: 90%;
+	margin: auto;
 	display: block;
 }
 
-.container {
-	margin: 2rem;
+.quiz--wrapper {
+	height: 20rem;
+	display: block;
 }
 
+.quiz--inject {
+	height: 18rem;
+	width: 100%;
+	display: block;
+	position: relative;
+}
+
+/* Slide Styles */
+.slide {
+	height: 80%;
+	width: 80%;
+	position: absolute;
+	left: 12.5%;
+	top: 12.5%;
+	z-index: 1;
+	opacity: 0;
+}
+.slide-ativo {
+	opacity: 1;
+	z-index: 2;
+}
+/* Pergunta */
+.slide .pergunta {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.slide-ativo .pergunta {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+/* Respostas */
+.slide .respostas {
+	width: 100%;
+	max-width: 20rem;
+	height: fit-content;
+	position: absolute;
+	bottom: -1rem;
+	left: 0;
+	font-size: 0.875rem;
+}
+.slide-ativo .respostas {
+	position: absolute;
+	bottom: -1rem;
+	left: 0;
+}
+.respostas div {
+	display: flex;
+	margin: 0.25rem 0;
+}
+
+/* Estilos de Label */
+.respostas label.rotulo {
+	width: 100%;
+	padding: 0.5rem 1rem;
+	padding-top: 0.75rem;
+	display: inline-block;
+	cursor: pointer;
+	transition: background-color 400ms;
+}
+input[type='radio']:focus + label {
+	color: white;
+	background-color: palevioletred;
+}
+input[type='radio']:checked + label {
+	color: white;
+	background-color: yellowgreen;
+}
+
+.paginacao {
+	display: flex;
+	justify-content: space-between;
+}
+.paginacao .avancar {
+	margin-left: auto;
+}
+.enviar,
+.paginacao {
+	margin: 0.25rem;
+}
+
+/* Estilos de Link */
+a {
+	transition: background-color 400ms;
+}
 a:link {
 	color: steelblue;
 }
@@ -36,118 +113,121 @@ a:visited {
 	color: steelblue;
 }
 a:hover {
-	color: palevioletred;
+	text-shadow: none;
+	padding: 0.25rem;
+	padding-top: 0.375rem;
 }
 a:active {
-	color: yellowgreen;
+	padding: 0.25rem;
+	padding-top: 0.375rem;
 }
 
-.title {
-	font-size: 3rem;
+/* Estilos de Botão */
+.enviar button {
+	font-size: 1rem;
+	width: 99.5%;
+	display: none;
+	margin: auto;
+	margin-top: 0.5rem;
+}
+button > span {
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.paginacao button span {
+	left: 55%;
 }
 
-.texto.container,
-.respostas.container {
-	margin: 2rem;
-}
-
-.texto.principal {
-	height: fit-content;
-}
-
-.opcoes.container {
-	display: flex;
-	flex-direction: column;
-}
-
-.paginacao.wrapper {
-	display: flex;
-	justify-content: space-between;
-	margin: 0;
-}
-
-.botao {
+/* Efeitos de Clique */
+button {
 	font-family: 'Newsgeek';
 	font-size: 1.5rem;
 	color: white;
 	background-color: #333;
-	border: none;
-	border-radius: 0.375rem;
-	box-shadow: inset 0.1rem 0.1rem white, 0.1rem 0.1rem black;
-}
-.paginacao.botao {
 	height: 1.5rem;
 	width: 2rem;
+	border: none;
+	border-radius: 0.375rem;
 	position: relative;
+	box-shadow: 0.1rem 0.1rem black;
+	transition: background-color 400ms;
+}
+button:focus,
+a:focus,
+input[type='radio']:focus {
+	outline-color: orangered;
+	outline-style: solid;
+	outline-width: 0.125rem;
+	outline-offset: 0.125rem;
+}
+button:hover,
+a:hover,
+.rotulo:hover {
+	color: white;
+	background: palevioletred;
+	box-shadow: 0.125rem 0.125rem #333;
+}
+button:active,
+a:active,
+.rotulo:active {
+	color: black;
+	background-color: yellowgreen;
+	box-shadow: 0.0625rem 0.0625rem black;
 }
 
-.avancar {
-	margin: 0;
-	margin-left: auto;
+/* Estilos em geral */
+header h1 {
+	font-size: 3rem;
 }
 
-.botao > span {
-	position: absolute;
-	top: 60%;
-	left: 57%;
-	transform: translate(-50%, -50%);
-}
-
-.botao.enviar {
-	font-size: 1rem;
-	width: 100%;
-	display: none;
-	padding-top: 0.5rem;
-}
-
-.rotulo {
-	display: block;
-	padding: 0.25rem;
-	margin: 0.25rem;
-	cursor: pointer;
-}
-
-/* input {
-	width: 0;
-	height: 0;
-} */
-
-input[type='radio']:not(:checked) + label {
-	margin-left: 2.75rem;
-}
-
-.footer {
+footer {
 	width: fit-content;
-	text-align: center;
+	margin: auto;
+	margin-top: 1rem;
 }
 
-.com_amor {
+.com-amor {
 	font-size: 0.9625rem;
 	text-shadow: -0.0625rem -0.0625rem 0 #fff, 0.0625rem -0.0625rem 0 #fff,
 		-0.0625rem 0.0625rem 0 #fff, 0.0625rem 0.0625rem 0 #fff;
-}
-
-.opcoes.container.invisivel {
-	display: none;
 }
 
 @media (min-width: 481px) {
 	:root {
 		font-size: 2vh;
 	}
-	.body {
+	body {
 		width: 100%;
 	}
-	.texto.container,
-	.respostas.container {
-		margin: 1rem 4rem;
+
+	main,
+	header,
+	footer {
+		margin: 3rem;
 	}
-	.conteudo.principal,
-	header.container {
-		margin: 4rem;
-	}
-	footer.container {
+
+	footer {
 		margin: auto;
 		margin-bottom: 4rem;
 	}
+}
+
+@media (min-width: 769px) {
+	body {
+		margin: auto;
+		width: 90%;
+	}
+}
+
+@media (min-width: 1025px) {
+	body {
+		margin: auto;
+		width: 70%;
+	}
+}
+
+.invisivel {
+	display: none;
 }
