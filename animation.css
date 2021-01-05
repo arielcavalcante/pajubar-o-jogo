@@ -1,5 +1,5 @@
-.icone--pergunta{
-	animation: blinker 800ms linear infinite;
+.icone--pergunta {
+	animation: blinker 800ms cubic-bezier(0.47, 0, 0.75, 0.72) infinite;
 }
 
 .envelope {

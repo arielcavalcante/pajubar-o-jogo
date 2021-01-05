@@ -11,27 +11,20 @@
 		inset 0.125rem 0.125rem white, inset 0.25rem 0.25rem #222;
 }
 
-.placar {
-	letter-spacing: 0.25rem;
-	display: flex;
-	justify-content: space-evenly;
-	background: #222;
-	padding: 0.0625rem;
-	padding-right: 0.25rem;
-	margin-bottom: 2rem;
-	border: solid 0.125rem #222;
-	border-top: none;
-	border-left: none;
+.quiz--wrapper .placar {
+	width: fit-content;
+	vertical-align: middle;
+	letter-spacing: 0.125rem;
+	border: solid 0.0625rem #222;
 	border-radius: 0.25rem;
-	border-color: white;
 }
 
 .placar .texto,
 .placar .numero {
-	color: white;
+	font-size: 0.75rem;
 	width: fit-content;
-	padding: 0.25rem;
-	padding-top: 0.5rem;
+	padding: 0.125rem;
+	padding-top: 0.375rem;
 	margin: 0.125rem;
 	border: none;
 }

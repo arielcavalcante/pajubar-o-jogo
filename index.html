@@ -11,16 +11,16 @@
 		<link rel="stylesheet" href="background.css" />
 	</head>
 	<body>
-		<header>
-			<h1>Queez</h1>
-		</header>
 		<main>
-			<div class="placar">
-				<span class="texto">pontos:</span>
-				<span class="numero">000</span>
-			</div>
 			<div class="frame">
 				<div class="quiz--wrapper">
+					<div class="header">
+						<h1>Queez</h1>
+						<div class="placar">
+							<span class="texto">pontos:</span>
+							<span class="numero">0</span>
+						</div>
+					</div>
 					<div class="quiz--inject">
 						<div class="pergunta">
 							<span>Quantas travestis você conhece?</span>
@@ -30,15 +30,15 @@
 					</div>
 				</div>
 				<div class="paginacao">
-					<button tabindex="3" class="voltar">
+					<button class="voltar">
 						<span>←</span>
 					</button>
-					<button tabindex="3" class="avancar">
+					<button class="avancar">
 						<span>→</span>
 					</button>
 				</div>
 				<div class="enviar">
-					<button tabindex="3" type="submit">
+					<button type="submit">
 						<span>Aquenda!</span>
 					</button>
 				</div>
@@ -48,7 +48,6 @@
 			<span class="com-amor">
 				Feito com <span>❤️</span> por
 				<a
-					tabindex="3"
 					target="blank_"
 					title="Github do Ariel"
 					href="https://github.com/arielcavalcante"
@@ -56,7 +55,6 @@
 				>
 				e
 				<a
-					tabindex="3"
 					target="blank_"
 					title="Github de Nelson"
 					href="https://github.com/NelsonFilho1984"
@@ -64,6 +62,7 @@
 				>.
 			</span>
 		</footer>
+		<script src="results.js"></script>
 		<script src="data.js"></script>
 		<script src="main.js"></script>
 	</body>

@@ -11,31 +11,27 @@ const ehUmaPergunta = () => textoPrincipal.innerHTML.indexOf('?') != -1 ? mostra
 */
 
 // Loopa os dados e insere no html alterando o DOM só 1 vez
-const criarQuiz = () => {
-	const html = [];
-		data.forEach(
-			(perguntaAtual, i) => {
-
-			const respostas = [];
-			for(alternativa in perguntaAtual.respostas){
-
-				respostas.push(
+function criarQuiz() {
+	const nodeArray = [];
+	data.forEach((perguntaAtual, i) => {
+		const respostas = [];
+		for (alternativa in perguntaAtual.respostas) {
+			respostas.push(
 				`<div>
 					<input
 					 	tabindex='3'
 						type='radio' 
-						name='pergunta_${i+1}' 
+						name='pergunta_${i}' 
 						value='${alternativa}' 
-						class='resposta_${i+1} resultados' 
-						id='resposta_${perguntaAtual.respostas[alternativa]}' 
-						/>
+						class='resposta_${i} resultados' 
+						id='resposta_${perguntaAtual.respostas[alternativa]}'/>
 						<label class='rotulo' for='resposta_${perguntaAtual.respostas[alternativa]}'>${perguntaAtual.respostas[alternativa]}</label>
 					</div>`
-				);
-			}
+			);
+		}
 
-			html.push(
-				`<div class='slide'>
+		nodeArray.push(
+			`<div class='slide'>
 					<div class='pergunta'>
 						<span>${perguntaAtual.perguntas}</span>
 						<span class='icone--pergunta'>▼</span>
@@ -44,48 +40,111 @@ const criarQuiz = () => {
 						${respostas.join('')}
 					</div>
 				</div>`
-			);
-		}
-	);
+		);
+	});
 	// Calcula, valida e exibe os resultados do quiz na tela
-	quiz.innerHTML = html.join("")
+	quiz.innerHTML = nodeArray.join('');
 }
 
-const calcularResultados = () => {
-const todasAsOpcoes = quiz.querySelectorAll('.respostas');
-const addPonto = () => {
-	for(let i = 0; i < data[perguntaAtual.perguntas.length]; i++){
-		resultados.innerText = i
-	}
-}
+function calcularResultados() {
+	const todasAsOpcoes = quiz.querySelectorAll('.respostas');
+	let pontos = 0;
 
 	data.forEach((perguntaAtual, numeroDaQuestao) => {
-		
 		const opcoesDaQuestao = todasAsOpcoes[numeroDaQuestao];
+		const selecionada = `input[name=pergunta_${numeroDaQuestao}]:checked`;
 
-		const selecionada = `input[name='pergunta_${numeroDaQuestao}']:checked`;
-		
-		const respostaDoUsuario = (opcoesDaQuestao.querySelector(selecionada) || {}).value;
+		const respostaDoUsuario = (opcoesDaQuestao.querySelector(selecionada) || {})
+			.value;
 
-		if(respostaDoUsuario === perguntaAtual.respostaCerta){
-			addPonto()
+		if (respostaDoUsuario === perguntaAtual.respostaCerta) {
+			pontos += 1;
+			pontuacao.innerText = pontos;
 		}
-		
 	});
+	return pontos;
 }
 
-const mostrarSlide = (n) => {
+function enviarResultados() {
+	const slideArray = [];
+
+	results.forEach((resultadoAtual, i) => {
+		slideArray.push(`
+		<div class='slide slide_resultado'>
+		<div class=porcentagem_${i * 20}>
+		<img src=${resultadoAtual.image} alt="${resultadoAtual.alt}" title="${
+			resultadoAtual.alt
+		}">
+		<span>${resultadoAtual.title}</span>
+		</div>
+		</div>
+		`);
+	});
+	quizContainer.innerHTML = slideArray.join('');
+	mostrarResultado();
+}
+
+function mostrarResultado() {
+	const resultado = Number(pontuacao.innerText);
+	const zero = document.querySelector('.porcentagem_0');
+	const um = document.querySelector('.porcentagem_20');
+	const dois = document.querySelector('.porcentagem_40');
+	const tres = document.querySelector('.porcentagem_60');
+	const quatro = document.querySelector('.porcentagem_80');
+	const cinco = document.querySelector('.porcentagem_100');
+
+	const removedor = [
+		um.classList.remove('slide-ativo'),
+		dois.classList.remove('slide-ativo'),
+		tres.classList.remove('slide-ativo'),
+		quatro.classList.remove('slide-ativo'),
+		cinco.classList.remove('slide-ativo'),
+		(submit.style.display = 'none'),
+		(botaoVoltar.style.display = 'none'),
+		(botaoAvancar.style.display = 'none'),
+	];
+	// slide_resultado.classList.remove('slide-ativo');
+
+	switch (resultado) {
+		case 0:
+			zero.parentElement.classList.add('slide-ativo');
+			removedor.join(';');
+			break;
+		case 1:
+			um.parentElement.classList.add('slide-ativo');
+			removedor.join(';');
+			break;
+		case 2:
+			dois.parentElement.classList.add('slide-ativo');
+			removedor.join(';');
+			break;
+		case 3:
+			tres.parentElement.classList.add('slide-ativo');
+			removedor.join(';');
+			break;
+		case 4:
+			quatro.parentElement.classList.add('slide-ativo');
+			removedor.join(';');
+			break;
+		case 5:
+			cinco.parentElement.classList.add('slide-ativo');
+			removedor.join(';');
+			break;
+		default:
+	}
+}
+function mostrarSlide(n) {
 	slides[slideAtual].classList.remove('slide-ativo');
 	slides[n].classList.add('slide-ativo');
 	slideAtual = n;
 
-	if(slideAtual === 0){
+	if (slideAtual === 0) {
 		botaoVoltar.style.display = 'none';
 	} else {
-		botaoVoltar.style.display = 'inline-block'
+		botaoVoltar.style.display = 'inline-block';
 		if (slideAtual === slides.length - 1) {
 			botaoAvancar.style.display = 'none';
-			submit.style.display = 'inline-block';
+			submit.style.display = 'flex';
 		} else {
 			botaoAvancar.style.display = 'inline-block';
 			submit.style.display = 'none';
@@ -93,30 +152,25 @@ const mostrarSlide = (n) => {
 	}
 }
 
-const mostrarSlideSeguinte = () => {
-	mostrarSlide(slideAtual + 1);
-}
+const mostrarSlideSeguinte = () => mostrarSlide(slideAtual + 1);
 
-const mostrarSlideAnterior = () => {
-	mostrarSlide(slideAtual - 1);
-}
+const mostrarSlideAnterior = () => mostrarSlide(slideAtual - 1);
 
 /* ~~~~~ Variáveis ~~~~~ */
-let quizContainer = document.querySelector(".quiz--wrapper")
-let quiz = document.querySelector(".quiz--inject");
-let slideAtivo = document.querySelector(".slide-ativo");
-let textoPrincipal = document.querySelector(".pergunta span");
-let resultados = document.querySelector(".placar .numero");
-let placarTaxa = document.querySelector(".placar .taxa");
-
+let quizContainer = document.querySelector('.quiz--wrapper');
+let quiz = document.querySelector('.quiz--inject');
+let slideAtivo = document.querySelector('.slide-ativo');
+let textoPrincipal = document.querySelector('.pergunta span');
+let pontuacao = document.querySelector('.numero');
+let placarTaxa = document.querySelector('.placar .taxa');
 
 /* ~~~~~ Chamada das funções ~~~~~ */
-criarQuiz()
+criarQuiz();
 
 //Paginação
 const botaoVoltar = document.querySelector('.voltar');
 const botaoAvancar = document.querySelector('.avancar');
-let submit = document.querySelector(".enviar button");
+let submit = document.querySelector('.enviar button');
 const slides = document.querySelectorAll('.slide');
 let slideAtual = 0;
 
@@ -124,8 +178,7 @@ mostrarSlide(slideAtual);
 
 /* ~~~~~ Manipuladores de eventos pra chamar a função ~~~~~ */
 botaoAvancar.addEventListener('click', () => {
-	mostrarSlideSeguinte(),
-	calcularResultados()
+	calcularResultados(), mostrarSlideSeguinte();
 });
-// botaoAvancar.addEventListener('click', calcularResultados);
 botaoVoltar.addEventListener('click', mostrarSlideAnterior);
+submit.addEventListener('click', enviarResultados);

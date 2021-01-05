@@ -6,70 +6,62 @@
 :root {
 	font-size: 4.125vw;
 	font-family: 'Newsgeek', Arial Black, sans-serif;
-	letter-spacing: 0.0375rem;
+	letter-spacing: 0.075rem;
 }
 
 body {
-	width: 90%;
-	margin: auto;
+	margin: 0;
 	display: block;
 }
+main {
+	margin: 10vh 3vh 3vh;
+}
 
+/* ~~~~~ Containers ~~~~ */
 .quiz--wrapper {
-	height: 20rem;
-	display: block;
+	height: 75vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
-
 .quiz--inject {
-	height: 18rem;
-	width: 100%;
-	display: block;
+	line-height: 120%;
+	width: 90%;
+	height: 55vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin: 3vh auto 5vh;
 	position: relative;
 }
-
 /* Slide Styles */
 .slide {
-	height: 80%;
-	width: 80%;
 	position: absolute;
-	left: 12.5%;
-	top: 12.5%;
-	z-index: 1;
 	opacity: 0;
+	z-index: -1;
 }
 .slide-ativo {
+	height: 100%;
+	display: block;
 	opacity: 1;
-	z-index: 2;
+	z-index: 0;
 }
 /* Pergunta */
 .slide .pergunta {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-.slide-ativo .pergunta {
-	position: absolute;
-	top: 0;
-	left: 0;
+	font-size: 1rem;
+	display: block;
+	margin-bottom: 5vh;
 }
 /* Respostas */
 .slide .respostas {
-	width: 100%;
-	max-width: 20rem;
-	height: fit-content;
-	position: absolute;
-	bottom: -1rem;
-	left: 0;
-	font-size: 0.875rem;
-}
-.slide-ativo .respostas {
-	position: absolute;
-	bottom: -1rem;
-	left: 0;
+	font-size: 0.75rem;
 }
 .respostas div {
 	display: flex;
-	margin: 0.25rem 0;
+	margin: 1vh 0;
+}
+.slide-ativo > .respostas > div:not(:last-of-type) > .rotulo {
+	box-shadow: 0 0.0625rem whitesmoke;
 }
 
 /* Estilos de Label */
@@ -80,6 +72,12 @@ body {
 	display: inline-block;
 	cursor: pointer;
 	transition: background-color 400ms;
+}
+input[type='radio'] {
+	width: 0;
+	height: 0;
+	padding: 0;
+	margin: 0;
 }
 input[type='radio']:focus + label {
 	color: white;
@@ -123,12 +121,16 @@ a:active {
 }
 
 /* Estilos de Botão */
+.frame {
+	position: relative;
+}
 .enviar button {
 	font-size: 1rem;
-	width: 99.5%;
+	width: 8rem;
 	display: none;
-	margin: auto;
-	margin-top: 0.5rem;
+	position: absolute;
+	right: 0.5rem;
+	bottom: 0.5rem;
 }
 button > span {
 	position: absolute;
@@ -137,6 +139,7 @@ button > span {
 	transform: translate(-50%, -50%);
 }
 .paginacao button span {
+	font-size: 1rem;
 	left: 55%;
 }
 
@@ -148,26 +151,19 @@ button {
 	background-color: #333;
 	height: 1.5rem;
 	width: 2rem;
+	margin: 0.125rem;
 	border: none;
 	border-radius: 0.375rem;
 	position: relative;
 	box-shadow: 0.1rem 0.1rem black;
 	transition: background-color 400ms;
 }
-button:focus,
-a:focus,
-input[type='radio']:focus {
-	outline-color: orangered;
-	outline-style: solid;
-	outline-width: 0.125rem;
-	outline-offset: 0.125rem;
-}
 button:hover,
 a:hover,
 .rotulo:hover {
 	color: white;
 	background: palevioletred;
-	box-shadow: 0.125rem 0.125rem #333;
+	box-shadow: 0.125rem 0.125rem #690033;
 }
 button:active,
 a:active,
@@ -178,8 +174,19 @@ a:active,
 }
 
 /* Estilos em geral */
-header h1 {
-	font-size: 3rem;
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.header h1 {
+	font-size: 1.125rem;
+	padding: 0.5rem;
+	margin: 0.5rem;
+}
+.header .placar {
+	padding: 0.5rem 2rem;
+	margin: 0.5rem;
 }
 
 footer {
@@ -194,37 +201,175 @@ footer {
 		-0.0625rem 0.0625rem 0 #fff, 0.0625rem 0.0625rem 0 #fff;
 }
 
-@media (min-width: 481px) {
+.slide_resultado {
+	height: 80%;
+	width: auto;
+}
+.slide_resultado [class^='porcentagem'] {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+	margin: auto;
+}
+.slide [class^='porcentagem'] img {
+	margin: auto;
+	max-width: 100%;
+	height: auto;
+	margin: 0;
+	border: solid 0.25rem #333;
+	border-radius: 0.125rem;
+	cursor: help;
+}
+.slide [class^='porcentagem'] span {
+	display: inline-block;
+	margin: 2vh 0;
+}
+
+/* ~~~~~~~~~~~ PORTRAIT ~~~~~~~~~~~~ */
+
+@media (min-width: 410px) and (orientation: portrait) {
 	:root {
-		font-size: 2vh;
+		font-size: 2.25vh;
 	}
-	body {
-		width: 100%;
+	main {
+		margin: 10vh 3vh 3vh;
 	}
-
-	main,
-	header,
-	footer {
-		margin: 3rem;
+	.quiz--wrapper {
+		height: 75vh;
 	}
-
-	footer {
-		margin: auto;
-		margin-bottom: 4rem;
+	.quiz--inject {
+		height: 55vh;
+	}
+	.respostas div {
+		margin: 2vh 0;
 	}
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) and (orientation: portrait) {
+	:root {
+		font-size: 2.5vh;
+	}
 	body {
 		margin: auto;
 		width: 90%;
 	}
+	.slide-ativo .respostas div {
+		margin: 1vh;
+	}
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1024px) and (orientation: portrait) {
+	:root {
+		font-size: 3vh;
+	}
 	body {
-		margin: auto;
-		width: 70%;
+		height: 60vh;
+	}
+	main {
+		margin: 8vh auto 1vh;
+		width: 65vh;
+	}
+	.slide-ativo .respostas div {
+		margin: 1vh;
+	}
+	footer > .com-amor {
+		font-size: 0.625rem;
+	}
+	.com-amor > span {
+		font-size: 0.5rem;
+	}
+}
+
+/* ~~~~~~~~~~~ LANDSCAPE ~~~~~~~~~~~~ */
+
+@media (min-width: 300px) and (orientation: landscape) {
+	:root {
+		font-size: 4vh;
+	}
+	main {
+		margin-bottom: 1vh;
+	}
+	.slide_resultado {
+		height: 80%;
+		width: auto;
+	}
+	.slide_resultado [class^='porcentagem'] {
+		width: auto;
+		height: 100%;
+	}
+	.slide_resultado [class^='porcentagem'] img {
+		width: auto;
+		height: 100%;
+	}
+	.slide_resultado [class^='porcentagem'] span {
+		margin: 2vh 15vh 0;
+	}
+	footer {
+		margin-top: 1vh;
+	}
+}
+@media (min-width: 567px) and (orientation: landscape) {
+	:root {
+		font-size: 3vh;
+	}
+	body {
+		height: 60vh;
+		width: 100%;
+	}
+	main {
+		margin: 5vh;
+		margin-bottom: 0;
+	}
+	.quiz--wrapper {
+		justify-content: space-around;
+		align-items: center;
+	}
+	.pergunta span {
+		font-size: 1rem;
+	}
+	.respostas div {
+		margin: 2vh 0;
+	}
+	footer {
+		margin: 0.0625rem auto 0;
+	}
+	footer > .com-amor {
+		font-size: small;
+	}
+	.com-amor > span {
+		font-size: x-small;
+	}
+}
+
+@media (min-width: 1024px) and (orientation: landscape) {
+	:root {
+		font-size: 3vh;
+	}
+	main {
+		width: 90vw;
+		max-width: 50rem;
+		margin: 4vh auto;
+	}
+	.quiz--inject {
+		height: 60vh;
+	}
+	/* .slide_resultado {
+		height: auto;
+	} */
+	/* .slide-ativo,
+	slide {
+		height: 50vh;
+	} */
+	.slide-ativo .respostas div {
+		margin: 1rem 0;
+	}
+	footer > .com-amor {
+		font-size: 1rem;
+	}
+	.com-amor > span {
+		font-size: 0.8rem;
 	}
 }
 
